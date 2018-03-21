@@ -1,1 +1,9 @@
-# DoubanMovie
+# 豆瓣电影助手
+
+- 基于Retrofit的豆瓣电影demo，查询电影详情
+
+
+
+# 运行效果
+
+
