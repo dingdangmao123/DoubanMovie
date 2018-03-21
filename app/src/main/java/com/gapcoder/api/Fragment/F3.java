@@ -37,7 +37,7 @@ public class F3 extends Fragment{
     F3Adapter adapter;
     RefreshLayout rf;
     List<F3Model.SubjectsBean> data=new LinkedList<>();
-    boolean flag=false;
+
 
 
     public F3(){
@@ -61,16 +61,7 @@ public class F3 extends Fragment{
         });
         return v;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(!flag) {
-            get();
-            flag=true;
-        }
-    }
-
+    
     private void get(){
 
         Retrofit retrofit = new Retrofit.Builder()

@@ -61,13 +61,11 @@ public class Movie extends AppCompatActivity {
                 MovieModel m=response.body();
                 if(m==null)
                     return ;
-
                 Glide.with(Movie.this).load(m.getImages().getSmall()).into(iv);
                 t.setTitle(m.getTitle());
                 title.setText(m.getTitle());
                 summary.setText(m.getSummary());
             }
-
             @Override
             public void onFailure(Call<MovieModel> call, Throwable t) {
                 Toast.makeText(Movie.this,t.toString(),Toast.LENGTH_LONG).show();

@@ -32,7 +32,7 @@ public class F2 extends Fragment{
     F2Adapter adapter;
     RefreshLayout rf;
     List<F2Model.SubjectsBean> data=new LinkedList<>();
-    boolean flag=false;
+
 
 
     public F2(){
@@ -55,15 +55,6 @@ public class F2 extends Fragment{
             }
         });
         return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(!flag) {
-            get();
-            flag=true;
-        }
     }
 
     private void get(){
