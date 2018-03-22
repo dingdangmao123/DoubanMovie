@@ -23,11 +23,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.list=list;
         this.title=title;
-        Log.i("Unit","pager");
+
     }
     @Override
     public Fragment getItem(int arg0){
-        Log.i("tag",String.valueOf(arg0));
         return list.get(arg0);
     }
     @Override

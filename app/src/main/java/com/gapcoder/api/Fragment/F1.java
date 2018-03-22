@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gapcoder.api.FG.BaseFG;
 import com.gapcoder.api.FG.F1Adapter;
 import com.gapcoder.api.FG.F1Model;
 import com.gapcoder.api.R;
@@ -26,12 +28,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 
-public class F1 extends Fragment{
+public class F1 extends BaseFG{
 
     RecyclerView tl;
     F1Adapter adapter;
     RefreshLayout rf;
     List<F1Model.SubjectsBean> data=new LinkedList<>();
+
 
     public F1() {
 
@@ -54,10 +57,19 @@ public class F1 extends Fragment{
             }
         });
         rf.autoRefresh();
+        isCreated=true;
         return v;
     }
-    private void get(){
 
+    @Override
+    protected void lazyLoad() {
+        if(isVisible&&isCreated&&!isLoaded)
+            rf.autoRefresh();
+    }
+
+    private void get(){
+        isLoaded=true;
+        Log.i("tag","f1");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.douban.com/v2/movie/")
                 .addConverterFactory(GsonConverterFactory.create())

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gapcoder.api.FG.BaseFG;
 import com.gapcoder.api.FG.F2Adapter;
 import com.gapcoder.api.FG.F2Model;
 import com.gapcoder.api.FG.F3Adapter;
@@ -30,7 +31,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
-public class F3 extends Fragment{
+public class F3 extends BaseFG {
 
 
     RecyclerView tl;
@@ -59,11 +60,20 @@ public class F3 extends Fragment{
                 get();
             }
         });
+        isCreated=true;
         return v;
     }
-    
+
+    @Override
+    protected void lazyLoad() {
+        if(isVisible&&isCreated&&!isLoaded)
+            rf.autoRefresh();
+    }
+
     private void get(){
 
+        isLoaded=true;
+        Log.i("tag","f3");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.douban.com/v2/movie/")
                 .addConverterFactory(GsonConverterFactory.create())
